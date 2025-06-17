@@ -60,9 +60,12 @@
 
     <script>
         const allimages = [
-            { img: "./images/full-stack-web-jdbinfotech.jpeg" },
-            { img: "./images/banner1.jpeg" },
-            { img: "./images/banner2.jpeg" }
+            { img: "./images/full-stack-web-jdbinfotech.jpeg" , desc : "full stack" },
+            { img: "./images/backend-jdbinfotech.jpeg" , desc : "backend" },
+            { img: "./images/coding_course_jdb-infotech.jpeg" , desc : "Coding course" },
+            { img: "./images/course-banner-jdbinfotech.jpeg" , desc : "banner course" },
+            { img: "./images/html-jdbinfotech.jpeg" , desc : "html course" },
+            { img: "./images/online-learning-course.jpeg" , desc : "online learning course" }
         ];
 
         const imageContainer = document.getElementById("images");
@@ -75,6 +78,7 @@
 
             card.innerHTML = `
                 <img src="${item.img}" alt="Image ${index + 1}">
+                <h4> ${item.desc} </h4> 
                 <button class="copy-btn" onclick="copyLink('${fullURL}', this)">Copy Link</button>
                 <div class="copied-msg" style="display: none;">Link copied!</div>
             `;
