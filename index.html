@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery with Copy Full Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        #images{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .image-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin: 20px auto;
+            width: 18%;
+            text-align: center;
+        }
+
+        .image-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .copy-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .copied-msg {
+            margin-top: 8px;
+            color: green;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="images"></div>
+
+    <script>
+        const allimages = [
+            { img: "./images/full-stack-web-jdbinfotech.jpeg" },
+            { img: "./images/banner1.jpeg" },
+            { img: "./images/banner2.jpeg" }
+        ];
+
+        const imageContainer = document.getElementById("images");
+
+        allimages.forEach((item, index) => {
+            const fullURL = `${window.location.origin}/${item.img.replace('./', '')}`;
+
+            const card = document.createElement("div");
+            card.className = "image-card";
+
+            card.innerHTML = `
+                <img src="${item.img}" alt="Image ${index + 1}">
+                <button class="copy-btn" onclick="copyLink('${fullURL}', this)">Copy Link</button>
+                <div class="copied-msg" style="display: none;">Link copied!</div>
+            `;
+
+            imageContainer.appendChild(card);
+        });
+
+        function copyLink(link, btn) {
+            navigator.clipboard.writeText(link).then(() => {
+                const msg = btn.nextElementSibling;
+                msg.style.display = "block";
+                setTimeout(() => {
+                    msg.style.display = "none";
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
